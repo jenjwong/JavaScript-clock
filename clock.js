@@ -9,10 +9,10 @@ const moveHandCSS = (hand, timeDegree) => {
 
 // handles transition when hands point to 12 oclock (value 0)
 const cssEdgeCase = (second) => {
-  if (second === 59) {
+  if (second === 58) {
     clockHand.style.transition = 'transition: all 0.00s;'
   }
-  if (second === 0) {
+  if (second === 1) {
     clockHand.style.transition = 'transition: all 0.05s;'
   }
 }
