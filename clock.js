@@ -4,16 +4,23 @@ const hourHand = document.querySelector('.hour-hand');
 const clockHand = document.querySelector('.hand');
 
 const moveHandCSS = (hand, timeDegree) => {
-  hand.style.transform  = `rotate(${timeDegree}deg)`;
-}
+  hand.style.transform = `rotate(${timeDegree}deg)`;
+};
 
-
+const getDegree = (timeUnit, base) => {
+  const degree = ((timeUnit / base) * 360) + 90;
+  return degree;
+};
 
 const updateClock = (second, minute, hour) => {
-  moveHandCSS(secondHand, getDegree(second, 60));
-  moveHandCSS(minuteHand, getDegree(minute, 60));
-  moveHandCSS(hourHand, getDegree(hour, 12));
-}
+  const degreeSecond = getDegree(second, 60);
+  const degreeMinute = getDegree(minute, 60);
+  const degreeHour = getDegree(hour, 12);
+
+  moveHandCSS(secondHand, degreeSecond);
+  moveHandCSS(minuteHand, degreeMinute);
+  moveHandCSS(hourHand, degreeHour);
+};
 
 const setTime = () => {
   const now = new Date();
@@ -21,11 +28,6 @@ const setTime = () => {
   const minute = now.getMinutes();
   const hour = now.getHours();
   updateClock(second, minute, hour);
-};
-
-const getDegree = (timeUnit, base) => {
-  const degree = ((timeUnit / base) * 360) + 90;
-  return degree;
 };
 
 setInterval(() => {
