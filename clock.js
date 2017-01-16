@@ -13,17 +13,9 @@ const getDegree = (timeUnit, base) => {
 };
 
 const updateClock = (second, minute, hour) => {
-  const degreeSecond = getDegree(second, 60);
-  const degreeMinute = getDegree(minute, 60);
-  const degreeHour = getDegree(hour, 12);
-
-  moveHandCSS(secondHand, degreeSecond);
-  moveHandCSS(minuteHand, degreeMinute);
-  moveHandCSS(hourHand, degreeHour);
-
-  clockHands.forEach((hand) => {
-    hand.style.visibility = 'visible';
-  });
+  moveHandCSS(secondHand, getDegree(second, 60));
+  moveHandCSS(minuteHand, getDegree(minute, 60));
+  moveHandCSS(hourHand, getDegree(hour, 12));
 };
 
 const setTime = () => {
@@ -35,4 +27,10 @@ const setTime = () => {
 };
 
 setInterval(setTime, 1000);
-setTime();
+
+(function(){
+  setTime();
+  clockHands.forEach((hand) => {
+    hand.style.visibility = 'visible';
+  });
+}());
