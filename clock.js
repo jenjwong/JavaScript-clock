@@ -30,6 +30,4 @@ const setTime = () => {
   updateClock(second, minute, hour);
 };
 
-setInterval(() => {
-  getDegree(setTime());
-}, 1000);
+setInterval(setTime, 1000);
