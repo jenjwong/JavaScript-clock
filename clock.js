@@ -1,7 +1,7 @@
 const secondHand = document.querySelector('.second-hand');
 const minuteHand = document.querySelector('.minute-hand');
 const hourHand = document.querySelector('.hour-hand');
-const clockHand = document.querySelector('.hand');
+const clockHands = document.querySelectorAll('.hand');
 
 const moveHandCSS = (hand, timeDegree) => {
   hand.style.transform = `rotate(${timeDegree}deg)`;
@@ -20,6 +20,10 @@ const updateClock = (second, minute, hour) => {
   moveHandCSS(secondHand, degreeSecond);
   moveHandCSS(minuteHand, degreeMinute);
   moveHandCSS(hourHand, degreeHour);
+
+  clockHands.forEach((hand) => {
+    hand.style.visibility = 'visible';
+  });
 };
 
 const setTime = () => {
@@ -30,6 +34,5 @@ const setTime = () => {
   updateClock(second, minute, hour);
 };
 
-setInterval(() => {
-  getDegree(setTime());
-}, 1000);
+setInterval(setTime, 1000);
+setTime();
